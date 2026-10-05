@@ -1,0 +1,29 @@
+services:
+  panel:
+    build: .
+    image: bist-tez:latest
+    container_name: bist-tez
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+      - ./rules:/app/rules
+    environment:
+      TZ: Europe/Istanbul
+
+  # Hafta içi seans sonu otomatik tarama (rules/sablon.yaml → zamanlama)
+  zamanlayici:
+    build: .
+    image: bist-tez:latest
+    depends_on: [panel]
+    container_name: bist-tez-zamanlayici
+    restart: unless-stopped
+    command: ["python", "-m", "engine", "zamanla"]
+    healthcheck:
+      disable: true
+    volumes:
+      - ./data:/app/data
+      - ./rules:/app/rules
+    environment:
+      TZ: Europe/Istanbul

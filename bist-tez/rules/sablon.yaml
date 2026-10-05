@@ -1,0 +1,103 @@
+# BIST tez paneli — evren ve eşikler. Kaydedince bir sonraki taramada geçerli olur.
+# Eksik bırakılan alan engine/config.py içindeki varsayılanı kullanır.
+
+evren_cekirdek:
+  - THYAO.IS
+  - TUPRS.IS
+  - GARAN.IS
+  - AKBNK.IS
+  - YKBNK.IS
+  - ISCTR.IS
+  - VAKBN.IS
+  - ASELS.IS
+  - ASTOR.IS
+  - BIMAS.IS
+  - KCHOL.IS
+  - SAHOL.IS
+  - FROTO.IS
+  - TOASO.IS
+  - PGSUS.IS
+  - EREGL.IS
+  - KRDMD.IS
+  - SISE.IS
+  - TCELL.IS
+  - TTKOM.IS
+  - EKGYO.IS
+  - ENKAI.IS
+  - MGROS.IS
+  - PETKM.IS
+  - SASA.IS
+  - TAVHL.IS
+  - GUBRF.IS
+  - TRALT.IS
+  - AEFES.IS
+
+evren_ek:
+  - CCOLA.IS
+  - ARCLK.IS
+  - SOKM.IS
+  - ALARK.IS
+  - OYAKC.IS
+  - ULKER.IS
+  - AKSEN.IS
+  - TSKB.IS
+  - DOAS.IS
+
+veri:
+  gunluk_aralik: 5y
+  saatlik_aralik: 730d
+  cache_dk: 30        # bu süre içinde tekrar taramada Yahoo'ya gidilmez
+  paralel: 4          # eşzamanlı indirme; Yahoo 429 verirse 2'ye düşür
+  adjust: true        # temettü/split düzeltmeli fiyat
+  min_bar: 260
+
+hacim:
+  rvol20_min: 1.10
+  rvol5_min: 1.05
+  ray_rvol_min: 1.15
+  ray_rvol_gun_min: 0.85
+  seans_rvol_min: 1.10   # seans açıkken: bugün şu saate kadar / son 20 gün aynı saat
+
+tepki:
+  dist_sik: 3.0
+  dist_gevsek: 5.5
+  min_touch: 4
+  min_touch_gevsek: 6
+
+trend:
+  tap_min: 57         # EMA saygı yüzdesi eşiği
+  isin_dist: 3.5      # TREND_DAILY_ISIN için ışına azami % mesafe
+
+sat:
+  dist_max: -5.0      # EMA233 altı + ışının bu kadar altı → SAT daily
+
+isin:                 # süper çizgi
+  tol_atr: 0.55
+  min_aralik: 40
+  min_touch: 3
+  dist_min: -10.0
+  dist_max: 40.0
+  kirik_bar: 2        # bu kadar kapanış tolerans altında → kırık (canlı iptal)
+
+ema:
+  tap_tol_atr: 0.45
+  ileri_bar: 5
+  min_olay: 30
+  yakin_atr: 0.5
+
+seviye:               # yatay destek/direnç kümeleri
+  order: 5
+  tol_atr: 0.6
+  min_touch: 3
+  lookback: 500
+
+risk:
+  direnc_yakin: 2.0   # AL varken direnç bu %'den yakınsa uyar
+  iptal_atr: 0.5
+
+zamanlama:
+  saatler: ["18:20"]
+  gunler: [0, 1, 2, 3, 4]   # 0=Pazartesi
+
+skor:
+  ufuklar: [5, 10, 20]
